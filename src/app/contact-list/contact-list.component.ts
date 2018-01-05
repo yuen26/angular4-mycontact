@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 
 import { Contact } from '../contact';
@@ -15,10 +14,7 @@ export class ContactListComponent implements OnInit {
 	contacts: Array<Contact> = [];
   term: string;
 
-  constructor(
-    private contactService: ContactService,
-    private router: Router
-  ) {}
+  constructor(private contactService: ContactService ) {}
 
   ngOnInit() {
   	this.contactService.listContact().subscribe(
