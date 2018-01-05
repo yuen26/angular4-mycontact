@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { Contact } from '../contact';
@@ -15,6 +16,7 @@ export class ContactFormComponent implements OnInit {
 
   constructor(
     private contactService: ContactService,
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -29,12 +31,12 @@ export class ContactFormComponent implements OnInit {
 
   saveContact() {
     this.contactService.saveContact(this.contact).subscribe(
-      contact => this.goBack()
+      contact => this.router.navigate([''])
     );
   }
 
   goBack() {
-    window.location.href = '';
+    this.router.navigate(['']);
   }
 
 }

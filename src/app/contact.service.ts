@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response} from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
@@ -33,6 +33,7 @@ export class ContactService {
   }
 
   deleteContact(id) {
-  	this.http.delete(this.api + "delete/" + id);
+  	return this.http.delete(this.api + "delete/" + id)
+      .map((response: Response) => response.text());
   }
 }

@@ -25,10 +25,10 @@
 						</thead>
 						<tbody>
 							<tr *ngIf="contacts.length === 0">
-								<td colspan="4">No contacts</td>
+								<td colspan="5">No contacts</td>
 							</tr>
 
-							<tr *ngFor="let contact of contacts" (click)="showContact(contact.id)">
+							<tr *ngFor="let contact of contacts">
 								<td class="text-center">{{contact.id}}</td>
 								<td>{{contact.name}}</td>
 								<td>{{contact.email}}</td>

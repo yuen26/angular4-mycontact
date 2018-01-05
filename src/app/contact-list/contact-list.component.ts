@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 import { Contact } from '../contact';
@@ -14,7 +15,10 @@ export class ContactListComponent implements OnInit {
 	contacts: Array<Contact> = [];
   term: string;
 
-  constructor(private contactService: ContactService) {}
+  constructor(
+    private contactService: ContactService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
   	this.contactService.listContact().subscribe(
@@ -30,14 +34,13 @@ export class ContactListComponent implements OnInit {
     }, 500);
   }
 
-  showContact(id) {
-    window.location.href = "/contact/detail/" + id;
-  }
-
   deleteContact(id) {
-    this.contactService.deleteContact(id);
-    this.contactService.listContact().subscribe(
-      contacts => this.contacts = contacts
+    this.contactService.deleteContact(id).subscribe(
+      () => {
+        this.contactService.listContact().subscribe(
+          contacts => this.contacts = contacts
+        );
+      }
     );
   }
 }
